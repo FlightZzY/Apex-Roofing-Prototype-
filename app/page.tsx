@@ -12,26 +12,78 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-foreground via-foreground/95 to-card">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 right-20 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-secondary rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-foreground via-foreground/98 to-card pt-20">
+        <div className="absolute inset-0 opacity-15">
+          <div className="absolute top-32 right-1/4 w-96 h-96 bg-accent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
+          <div className="absolute bottom-20 left-1/3 w-96 h-96 bg-secondary rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDelay: '1s'}} />
+          <div className="absolute top-1/2 right-0 w-80 h-80 bg-accent/50 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
         </div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-background animate-fade-in">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-balance">
-            Premium Roofing Solutions
-          </h1>
-          <p className="text-xl sm:text-2xl mb-8 text-background/90 text-balance">
-            30-Mile Service Radius • Same-Day Availability • Expert Installation
-          </p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-accent hover:bg-accent/90 text-accent-foreground hover-scale"
-          >
-            <Link href="/contact">Get Your Free Quote</Link>
-          </Button>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[600px]">
+            {/* Left Content */}
+            <div className="text-background animate-fade-in space-y-6">
+              <div className="space-y-4">
+                <p className="text-sm font-semibold tracking-widest text-accent uppercase animate-slide-up" style={{animationDelay: '0.1s'}}>
+                  Professional Roofing Services
+                </p>
+                <h1 className="text-6xl sm:text-7xl font-bold text-balance leading-tight animate-slide-up" style={{animationDelay: '0.2s'}}>
+                  Premium Solutions for Your Roof
+                </h1>
+              </div>
+              
+              <p className="text-xl text-background/85 text-balance leading-relaxed animate-slide-up" style={{animationDelay: '0.3s'}}>
+                Expert inspections, reliable repairs, and complete replacements. We&apos;re your trusted partner for all roofing needs.
+              </p>
+
+              {/* Key Features */}
+              <div className="space-y-3 pt-4 animate-slide-up" style={{animationDelay: '0.4s'}}>
+                {[
+                  { icon: '⚡', text: 'Same-Day Availability' },
+                  { icon: '📍', text: '30-Mile Service Radius' },
+                  { icon: '✓', text: 'Licensed & Insured' },
+                ].map((feature, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <span className="text-2xl">{feature.icon}</span>
+                    <span className="text-background/90">{feature.text}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-2 animate-slide-up" style={{animationDelay: '0.5s'}}>
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground hover-scale font-semibold px-8"
+                >
+                  <Link href="/contact">Get Your Free Quote</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="border-background/30 text-background hover:bg-background/10 hover-scale font-semibold px-8"
+                >
+                  <Link href="/services">Explore Services</Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Right Visual Stats */}
+            <div className="hidden lg:flex flex-col gap-6 animate-fade-in" style={{animationDelay: '0.6s'}}>
+              {[
+                { number: '20+', label: 'Years Experience' },
+                { number: '5000+', label: 'Projects Completed' },
+                { number: '100%', label: 'Satisfaction Rate' },
+              ].map((stat, i) => (
+                <div key={i} className="group p-6 rounded-lg border border-background/20 bg-background/10 hover-lift backdrop-blur-sm">
+                  <p className="text-4xl font-bold text-accent mb-2">{stat.number}</p>
+                  <p className="text-background/80 group-hover:text-background transition-colors">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Pulsing dot indicator */}
