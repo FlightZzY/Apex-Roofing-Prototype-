@@ -1,12 +1,9 @@
 'use client'
 
-import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { useState } from 'react'
-
-// Note: Metadata only works in non-client components, moved to layout metadata
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', service: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
