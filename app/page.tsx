@@ -1,14 +1,12 @@
-import { Metadata } from 'next'
+'use client'
+
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, Zap, Shield, Home as HomeIcon, Wrench, ClipboardCheck } from 'lucide-react'
-
-export const metadata: Metadata = {
-  title: 'Apex Roofing | Professional Roofing Services',
-  description: 'Expert roofing services with same-day availability. Inspections, repairs, and replacements for residential and commercial properties.',
-}
+import { CheckCircle, Zap, Shield, HomeIcon, Wrench, ClipboardCheck, ChevronDown } from 'lucide-react'
+import { useState } from 'react'
 
 export default function HomePage() {
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
   return (
     <>
       {/* Hero Section */}
@@ -199,6 +197,72 @@ export default function HomePage() {
                 <p className="text-foreground/80 mb-4 italic">"{testimonial.text}"</p>
                 <p className="font-semibold text-accent">— {testimonial.name}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="w-full py-16 sm:py-24 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-center mb-4 text-balance">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-center text-foreground/70 mb-12 text-balance">
+            Get answers to common questions about our roofing services
+          </p>
+
+          <div className="space-y-4">
+            {[
+              {
+                question: 'How quickly can you respond to emergency roof damage?',
+                answer: 'We offer same-day emergency service for roofing damage. Call us immediately and we\'ll dispatch a team to assess and temporarily secure your roof until permanent repairs can be made.',
+              },
+              {
+                question: 'Do you offer financing options for roof replacement?',
+                answer: 'Yes, we work with several financing partners to help make roof replacement affordable. We can discuss flexible payment plans during your free consultation.',
+              },
+              {
+                question: 'What warranty do you provide on your work?',
+                answer: 'We provide a 10-year warranty on all materials and labor for roof replacements. Repairs typically come with a 5-year warranty. All warranties are documented in writing.',
+              },
+              {
+                question: 'How long does a typical roof replacement take?',
+                answer: 'Most residential roof replacements take 2-4 days depending on roof size and complexity. We\'ll provide a detailed timeline during the initial inspection.',
+              },
+              {
+                question: 'Are you licensed and insured?',
+                answer: 'Yes, we are fully licensed, insured, and bonded. We carry comprehensive liability insurance and workers\' compensation to protect both you and our team.',
+              },
+              {
+                question: 'Do you work with insurance companies?',
+                answer: 'Absolutely. We regularly work with insurance companies on storm damage claims. We can help document damage and communicate directly with your insurance adjuster.',
+              },
+            ].map((faq, idx) => (
+              <button
+                key={idx}
+                onClick={() => setExpandedFaq(expandedFaq === idx ? null : idx)}
+                className="w-full text-left group"
+              >
+                <div className="p-6 rounded-lg border border-border bg-card hover-lift transition-all">
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="font-semibold text-lg text-foreground group-hover:text-accent transition-colors">
+                      {faq.question}
+                    </h3>
+                    <ChevronDown
+                      className={`w-6 h-6 text-accent flex-shrink-0 transition-transform duration-300 ${
+                        expandedFaq === idx ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </div>
+
+                  {expandedFaq === idx && (
+                    <p className="mt-4 text-foreground/80 leading-relaxed animate-slide-up">
+                      {faq.answer}
+                    </p>
+                  )}
+                </div>
+              </button>
             ))}
           </div>
         </div>
