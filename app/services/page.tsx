@@ -127,19 +127,19 @@ export default function Services() {
           <div className="grid md:grid-cols-4 gap-6">
             {processSteps.map((item, idx) => (
               <AnimatedSection key={idx} direction="up" delay={idx * 150} className="relative h-full">
-                <div className="p-6 rounded-lg glow-card text-center h-full flex flex-col justify-start pt-10 min-h-[220px]">
-                  {/* Step badge in upper right */}
-                  <span className="absolute top-4 right-4 text-2xl font-bold font-mono text-accent/25 select-none">
+                <div className="group p-6 rounded-lg glow-card text-center h-full flex flex-col justify-start pt-10 min-h-[220px] relative">
+                  {/* Step badge in upper right — neon accent per plan */}
+                  <span className="absolute top-4 right-4 text-3xl font-bold font-mono text-accent/60 select-none group-hover:text-accent transition-colors duration-300">
                     {item.step}
                   </span>
                   
-                  {/* Icon */}
-                  <div className="w-12 h-12 rounded-full bg-accent/10 border border-accent/25 text-accent flex items-center justify-center mx-auto mb-4 hover-scale">
+                  {/* Icon — glows and scales on hover */}
+                  <div className="w-12 h-12 rounded-full bg-accent/10 border border-accent/25 text-accent flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_18px_rgba(255,140,66,0.45)] group-hover:border-accent/60 group-hover:bg-accent/20">
                     <item.icon size={22} className="animate-float" style={{ animationDelay: `${idx * 0.3}s`, animationDuration: '3.5s' }} />
                   </div>
                   
                   {/* Title & Description */}
-                  <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-accent transition-colors">
+                  <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-accent transition-colors duration-300">
                     {item.title}
                   </h3>
                   <p className="text-sm text-foreground/70 leading-relaxed">
