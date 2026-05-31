@@ -62,7 +62,7 @@ export default function HomePage() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-secondary/20 hover:bg-secondary/30 text-background border-2 border-secondary/50 hover:border-secondary hover-scale font-semibold px-8 transition-all"
+                  className="bg-white hover:bg-white/90 text-foreground hover-scale font-semibold px-8 transition-all"
                 >
                   <Link href="/services">Explore Services</Link>
                 </Button>
