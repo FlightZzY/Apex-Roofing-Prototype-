@@ -10,21 +10,44 @@ import './globals.css'
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
+const siteUrl = new URL(
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : 'http://localhost:3000'),
+)
+
 export const metadata: Metadata = {
+  metadataBase: siteUrl,
   title: 'Apex Roofing | Local Roofing Services',
   description: 'Professional roofing services for residential and commercial properties. Same-day service available in your area.',
   generator: 'v0.app',
-  icons: {
-    icon: [
+  openGraph: {
+    title: 'Apex Roofing | Local Roofing Services',
+    description: 'Professional roofing services for residential and commercial properties. Same-day service available in your area.',
+    type: 'website',
+    images: [
       {
-        url: '/icon-dark-32x32.png',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/hero-roofing.png',
+        width: 1024,
+        height: 1024,
+        alt: 'Apex Roofing team working on a residential roof',
       },
     ],
-    apple: '/apple-icon.png',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Apex Roofing | Local Roofing Services',
+    description: 'Professional roofing services for residential and commercial properties. Same-day service available in your area.',
+    images: ['/hero-roofing.png'],
+  },
+  icons: {
+    icon: {
+      url: '/icon.svg',
+      type: 'image/svg+xml',
+    },
   },
 }
 

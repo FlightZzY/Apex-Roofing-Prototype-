@@ -168,11 +168,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
-        {/* Pulsing dot indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-          <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse-glow" />
-        </div>
       </section>
 
       {/* Services Preview */}
