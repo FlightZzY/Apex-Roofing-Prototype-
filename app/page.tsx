@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, Zap, Shield, HomeIcon, Wrench, ClipboardCheck, ChevronDown } from 'lucide-react'
+import { CheckCircle, Zap, Shield, HomeIcon, Wrench, ClipboardCheck, ChevronDown, MapPin } from 'lucide-react'
 import { useState } from 'react'
 import { AnimatedSection } from '@/components/animated-section'
 import { CtaBanner } from '@/components/cta-banner'
@@ -46,12 +46,12 @@ export default function HomePage() {
               <AnimatedSection direction="up" delay={400}>
                 <div className="space-y-3 pt-2">
                   {[
-                    { icon: '⚡', text: 'Same-Day Availability' },
-                    { icon: '📍', text: '30-Mile Service Radius' },
-                    { icon: '✓', text: 'Licensed & Insured' },
+                    { icon: Zap, text: 'Same-Day Availability' },
+                    { icon: MapPin, text: '30-Mile Service Radius' },
+                    { icon: CheckCircle, text: 'Licensed & Insured' },
                   ].map((feature, i) => (
                     <div key={i} className="flex items-center gap-3">
-                      <span className="text-2xl">{feature.icon}</span>
+                      <feature.icon className="w-5 h-5 text-accent" aria-hidden="true" />
                       <span className="text-background/90 font-medium">{feature.text}</span>
                     </div>
                   ))}
