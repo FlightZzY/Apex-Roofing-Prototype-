@@ -9,10 +9,34 @@ import { CtaBanner } from '@/components/cta-banner'
 
 export default function HomePage() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
+  const [postalCode, setPostalCode] = useState('')
+  const [availabilityResult, setAvailabilityResult] = useState<{
+    type: 'success' | 'error'
+    message: string
+  } | null>(null)
+
+  const handleAvailabilityCheck = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const normalizedPostalCode = postalCode.trim().toUpperCase()
+
+    if (!/^[A-Z0-9][A-Z0-9 -]{2,11}$/.test(normalizedPostalCode)) {
+      setAvailabilityResult({
+        type: 'error',
+        message: 'Enter a valid ZIP or postal code using 3-12 letters or numbers.',
+      })
+      return
+    }
+
+    setAvailabilityResult({
+      type: 'success',
+      message: `Service available tomorrow at 2:00 PM - 4:00 PM for ${normalizedPostalCode}.`,
+    })
+  }
+
   return (
     <>
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-card pt-20">
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-card pt-24 pb-12">
         <div className="absolute inset-0 opacity-15">
           <div className="absolute top-32 right-1/4 w-96 h-96 bg-accent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
           <div className="absolute bottom-20 left-1/3 w-96 h-96 bg-secondary rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDelay: '1s'}} />
@@ -75,6 +99,54 @@ export default function HomePage() {
                   >
                     <Link href="/services">Explore Premium Services</Link>
                   </Button>
+                </div>
+              </AnimatedSection>
+
+              {/* Availability Check */}
+              <AnimatedSection direction="up" delay={600}>
+                <div className="glow-card rounded-xl p-5 sm:p-6 max-w-xl">
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-balance">
+                    Check Next-Day Availability
+                  </h2>
+                  <p className="text-foreground/70 mb-5 text-balance">
+                    Enter your ZIP or postal code to see service availability in your area
+                  </p>
+
+                  <form onSubmit={handleAvailabilityCheck} className="flex flex-col sm:flex-row gap-3" noValidate>
+                    <input
+                      type="text"
+                      inputMode="text"
+                      placeholder="Enter ZIP / postal code"
+                      maxLength={12}
+                      value={postalCode}
+                      onChange={(event) => {
+                        setPostalCode(event.target.value.replace(/[^a-zA-Z0-9 -]/g, '').toUpperCase().slice(0, 12))
+                        setAvailabilityResult(null)
+                      }}
+                      className="flex-1 px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all shadow-inner"
+                      aria-label="ZIP or postal code"
+                      aria-describedby={availabilityResult?.type === 'error' ? 'availability-error' : undefined}
+                    />
+                    <Button type="submit" className="btn-glow-accent font-semibold px-6 cursor-pointer">
+                      Check Availability
+                    </Button>
+                  </form>
+
+                  {availabilityResult && (
+                    <p
+                      id={availabilityResult.type === 'error' ? 'availability-error' : undefined}
+                      className={`text-sm mt-4 font-medium flex items-center gap-2 ${
+                        availabilityResult.type === 'success'
+                          ? 'text-green-300'
+                          : 'text-white'
+                      }`}
+                    >
+                      {availabilityResult.type === 'success' && (
+                        <CheckCircle className="w-4 h-4" aria-hidden="true" />
+                      )}
+                      {availabilityResult.message}
+                    </p>
+                  )}
                 </div>
               </AnimatedSection>
             </div>
@@ -171,40 +243,6 @@ export default function HomePage() {
               </AnimatedSection>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Availability Check */}
-      <section className="w-full py-16 sm:py-24 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <AnimatedSection direction="up">
-            <h2 className="text-4xl font-bold mb-4 text-balance">
-              Check Next-Day Availability
-            </h2>
-            <p className="text-foreground/70 mb-8 text-balance">
-              Enter your ZIP code to see service availability in your area
-            </p>
-          </AnimatedSection>
-
-          <AnimatedSection direction="up" delay={150}>
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="text"
-                placeholder="Enter ZIP code"
-                maxLength={5}
-                className="flex-1 px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all shadow-inner"
-              />
-              <Button className="btn-glow-accent font-semibold px-6 cursor-pointer">
-                Check Availability
-              </Button>
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection direction="up" delay={250}>
-            <p className="text-sm text-foreground/60 mt-4 font-medium">
-              ✓ Service available tomorrow at 2:00 PM - 4:00 PM
-            </p>
-          </AnimatedSection>
         </div>
       </section>
 
