@@ -111,7 +111,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-card pt-24 pb-12">
+      <section className="relative w-full min-h-screen flex items-start justify-center overflow-hidden bg-gradient-to-br from-background via-background to-card pt-16 pb-8 sm:items-center sm:pt-24 sm:pb-12">
         <img
           src="https://images.unsplash.com/photo-1635424824800-692767998d07?fm=jpg&q=80&w=1800&auto=format&fit=crop"
           alt=""
@@ -125,9 +125,9 @@ export default function HomePage() {
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[600px]">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center lg:min-h-[600px]">
             {/* Left Content */}
-            <div className="text-foreground space-y-6">
+            <div className="text-foreground space-y-4 sm:space-y-6">
               <div className="space-y-4">
                 <AnimatedSection direction="up" delay={100}>
                   <p className="text-sm font-semibold tracking-widest text-accent uppercase">
@@ -135,32 +135,32 @@ export default function HomePage() {
                   </p>
                 </AnimatedSection>
                 <AnimatedSection direction="up" delay={200}>
-                  <h1 className="text-6xl sm:text-7xl font-bold text-balance leading-tight">
+                  <h1 className="text-5xl sm:text-7xl font-bold text-balance leading-tight">
                     Premium Solutions for Your Roof
                   </h1>
                 </AnimatedSection>
               </div>
               
               <AnimatedSection direction="up" delay={300}>
-                <p className="text-xl text-foreground/85 text-balance leading-relaxed">
+                <p className="text-lg sm:text-xl text-foreground/85 text-balance leading-relaxed">
                   Expert inspections, reliable repairs, and complete replacements. We&apos;re your trusted partner for all roofing needs.
                 </p>
               </AnimatedSection>
 
               {/* CTA Buttons */}
               <AnimatedSection direction="up" delay={500}>
-                <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-1 sm:pt-2">
                   <Button
                     asChild
                     size="lg"
-                    className="btn-glow-accent font-semibold px-8 text-base h-12"
+                    className="btn-glow-accent font-semibold px-8 text-base h-12 w-full sm:w-auto"
                   >
                     <Link href="/contact">Claim Your Free Inspection</Link>
                   </Button>
                   <Button
                     asChild
                     size="lg"
-                    className="btn-glow-dark font-semibold px-8 text-base h-12"
+                    className="btn-glow-dark font-semibold px-8 text-base h-12 w-full sm:w-auto"
                   >
                     <Link href="/services">Explore Premium Services</Link>
                   </Button>
@@ -217,21 +217,21 @@ export default function HomePage() {
             </div>
 
             {/* Right Visual Stats */}
-            <div className="hidden lg:flex flex-col gap-6">
+            <div className="flex flex-col gap-4 lg:gap-6">
               {heroStats.map((stat, i) => (
                 <AnimatedSection key={i} direction="right" delay={150 * (i + 1)}>
-                  <div className="group p-6 rounded-xl bg-foreground/5 border border-accent/30 shadow-[0_0_28px_rgba(255,140,66,0.16)] glow-card-static hover:border-accent/70 hover:bg-foreground/10 hover:shadow-[0_0_42px_rgba(255,140,66,0.32)] transition-all duration-300">
-                    <div className="flex items-start justify-between gap-4 mb-4">
+                  <div className="group p-4 sm:p-6 rounded-xl bg-foreground/5 border border-accent/30 shadow-[0_0_28px_rgba(255,140,66,0.16)] glow-card-static hover:border-accent/70 hover:bg-foreground/10 hover:shadow-[0_0_42px_rgba(255,140,66,0.32)] transition-all duration-300">
+                    <div className="flex items-start justify-between gap-4 mb-3 sm:mb-4">
                       <div>
-                        <p className="text-3xl font-bold text-accent drop-shadow-[0_0_12px_rgba(255,140,66,0.45)]">
+                        <p className="text-2xl sm:text-3xl font-bold text-accent drop-shadow-[0_0_12px_rgba(255,140,66,0.45)]">
                           {animatedStats[i].value.toLocaleString()}
                           {stat.suffix}
                         </p>
-                        <p className="text-foreground/75 group-hover:text-foreground transition-colors font-medium">
+                        <p className="text-sm sm:text-base text-foreground/75 group-hover:text-foreground transition-colors font-medium">
                           {stat.label}
                         </p>
                       </div>
-                      <p className="rounded-full border border-accent/45 bg-accent/10 px-3 py-1 text-sm font-bold text-accent shadow-[0_0_18px_rgba(255,140,66,0.22)]">
+                      <p className="rounded-full border border-accent/45 bg-accent/10 px-3 py-1 text-xs sm:text-sm font-bold text-accent shadow-[0_0_18px_rgba(255,140,66,0.22)]">
                         {animatedStats[i].progress}%
                       </p>
                     </div>
@@ -247,7 +247,7 @@ export default function HomePage() {
                         {Array.from({ length: 10 }).map((_, segmentIndex) => (
                           <div
                             key={segmentIndex}
-                            className={`h-6 rounded-sm transition-all duration-300 ${
+                            className={`h-4 sm:h-6 rounded-sm transition-all duration-300 ${
                               animatedStats[i].progress >= (segmentIndex + 1) * 10
                                 ? 'bg-accent shadow-[0_0_14px_rgba(255,140,66,0.65)]'
                                 : 'bg-foreground/10'
@@ -255,7 +255,7 @@ export default function HomePage() {
                           />
                         ))}
                       </div>
-                      <div className="h-8 w-2 rounded-r-sm border-y border-r border-accent/40 bg-accent/20 shadow-[0_0_12px_rgba(255,140,66,0.25)]" />
+                      <div className="h-6 sm:h-8 w-2 rounded-r-sm border-y border-r border-accent/40 bg-accent/20 shadow-[0_0_12px_rgba(255,140,66,0.25)]" />
                     </div>
                     <p className="mt-3 text-xs uppercase tracking-[0.2em] text-foreground/45">
                       Live Progress
@@ -280,33 +280,60 @@ export default function HomePage() {
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 items-stretch">
+            <AnimatedSection direction="left" delay={100}>
+              <div className="relative h-full min-h-[360px] overflow-hidden rounded-2xl border border-border">
+                <img
+                  src="https://images.unsplash.com/photo-1635424709870-cdc6e64f0e20?fm=jpg&q=80&w=1200&auto=format&fit=crop"
+                  alt=""
+                  className="h-full w-full object-cover opacity-55 grayscale saturate-75 contrast-125"
+                  style={{ objectPosition: 'center 48%' }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/35 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-7 text-left">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-3">
+                    Premium roof care
+                  </p>
+                  <h3 className="text-3xl font-bold text-balance">
+                    Service options for every stage of your roof
+                  </h3>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            <div className="divide-y divide-border/80 border-y border-border/80">
             {[
               { title: 'Inspections', desc: 'Professional assessments', image: '/service-inspection-real.jpg', position: 'center 42%' },
               { title: 'Repairs', desc: 'Fast damage solutions', image: '/service-repair-real.jpg', position: 'center 52%' },
               { title: 'Replacements', desc: 'New roof installation', image: '/service-replacement-real.jpg', position: 'center 48%' },
             ].map((service, idx) => (
               <AnimatedSection key={idx} direction="up" delay={idx * 150}>
-                <div className="overflow-hidden rounded-lg glow-card text-center">
-                  <div className="relative h-40 overflow-hidden border-b border-border">
+                <div className="group grid grid-cols-[5rem_1fr] sm:grid-cols-[7rem_1fr] gap-4 py-6 text-left">
+                  <div className="relative h-20 sm:h-24 overflow-hidden rounded-xl border border-border">
                     <img
                       src={service.image}
                       alt=""
-                      className="h-full w-full object-cover opacity-40 grayscale saturate-75 contrast-125"
+                      className="h-full w-full object-cover opacity-60 grayscale saturate-75 contrast-125 transition-transform duration-500 group-hover:scale-105"
                       style={{ objectPosition: service.position }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-card/45 to-transparent" />
                     <div className="absolute inset-0 bg-accent/10 mix-blend-overlay" />
                   </div>
-                  <div className="p-8 pt-6">
-                    <h3 className="text-xl font-bold mb-2">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent/70 mb-2">
+                        0{idx + 1}
+                      </p>
+                      <h3 className="text-2xl font-bold mb-2 group-hover:text-accent transition-colors">
                       {service.title}
-                    </h3>
-                    <p className="text-foreground/70">{service.desc}</p>
+                      </h3>
+                      <p className="text-foreground/70">{service.desc}</p>
+                    </div>
                   </div>
                 </div>
               </AnimatedSection>
             ))}
+            </div>
           </div>
 
           <AnimatedSection direction="up" className="mt-12 text-center">
@@ -333,20 +360,20 @@ export default function HomePage() {
             </p>
           </AnimatedSection>
 
-          <div className="grid lg:grid-cols-2 gap-6">
+          <div className="grid lg:grid-cols-2 gap-8">
             <AnimatedSection direction="left" delay={100}>
-              <div className="h-full rounded-2xl border border-border bg-background/35 p-6 sm:p-8">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground/45 mb-4">
+              <div className="h-full border-y border-border py-6 sm:py-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground/45 mb-6">
                   Typical Contractor
                 </p>
-                <div className="space-y-4">
+                <div className="divide-y divide-border/70">
                   {[
                     'Vague pricing with unclear add-ons',
                     'Quick patch recommendations without full roof context',
                     'Limited updates once the job begins',
                     'Cleanup quality depends on the crew',
                   ].map((item, idx) => (
-                    <div key={idx} className="flex gap-3 rounded-xl border border-border bg-card/45 p-4">
+                    <div key={idx} className="flex gap-3 py-4">
                       <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/35 flex-shrink-0" />
                       <p className="text-foreground/65">{item}</p>
                     </div>
@@ -356,18 +383,18 @@ export default function HomePage() {
             </AnimatedSection>
 
             <AnimatedSection direction="right" delay={200}>
-              <div className="h-full rounded-2xl border border-accent/40 bg-background/55 p-6 sm:p-8 shadow-[0_0_36px_rgba(255,140,66,0.18)]">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-4">
+              <div className="h-full border-y border-accent/45 py-6 sm:py-8 shadow-[0_18px_42px_-34px_rgba(255,140,66,0.55)]">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-6">
                   Apex Roofing
                 </p>
-                <div className="space-y-4">
+                <div className="divide-y divide-accent/20">
                   {[
                     'Detailed written estimates before work starts',
                     'Honest repair-or-replace guidance based on roof condition',
                     'Clear timelines and communication throughout the project',
                     'Property protection and thorough cleanup after completion',
                   ].map((item, idx) => (
-                    <div key={idx} className="flex gap-3 rounded-xl border border-accent/25 bg-card/70 p-4 shadow-[0_0_18px_rgba(255,140,66,0.08)]">
+                    <div key={idx} className="flex gap-3 py-4">
                       <CheckCircle className="mt-0.5 h-5 w-5 text-accent flex-shrink-0" aria-hidden="true" />
                       <p className="text-foreground/85 font-medium">{item}</p>
                     </div>

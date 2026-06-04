@@ -53,17 +53,19 @@ export default function About() {
       {/* Stats Section */}
       <section className="w-full py-16 sm:py-24 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 border-y border-border divide-y md:divide-y-0 md:divide-x divide-border">
             {[
               { icon: Award, title: '20+ Years', desc: 'Industry Excellence' },
               { icon: Users, title: '5,000+', desc: 'Happy Customers' },
               { icon: Clock, title: '24/7', desc: 'Emergency Support' },
             ].map((stat, idx) => (
               <AnimatedSection key={idx} direction="up" delay={idx * 150}>
-                <div className="text-center p-8 rounded-lg glow-card h-full">
-                  <stat.icon className="w-16 h-16 mx-auto mb-4 text-accent animate-float" style={{ animationDelay: `${idx * 0.4}s`, animationDuration: '3.8s' }} />
-                  <h3 className="text-3xl font-bold mb-2">{stat.title}</h3>
-                  <p className="text-foreground/70">{stat.desc}</p>
+                <div className="flex items-center justify-center gap-5 py-8 md:px-8">
+                  <stat.icon className="w-12 h-12 text-accent animate-float flex-shrink-0" style={{ animationDelay: `${idx * 0.4}s`, animationDuration: '3.8s' }} />
+                  <div className="text-left">
+                    <h3 className="text-4xl font-bold mb-1">{stat.title}</h3>
+                    <p className="text-foreground/70">{stat.desc}</p>
+                  </div>
                 </div>
               </AnimatedSection>
             ))}
@@ -78,7 +80,7 @@ export default function About() {
             <h2 className="text-4xl font-bold text-center mb-12 text-balance">Our Values</h2>
           </AnimatedSection>
           
-          <div className="space-y-6">
+          <div className="mx-auto max-w-3xl border-y border-border divide-y divide-border">
             {[
               { title: 'Quality Workmanship', desc: 'We never compromise on quality. Every project receives our full attention and expertise.' },
               { title: 'Customer First', desc: 'Your satisfaction is our priority. We listen, communicate, and deliver beyond expectations.' },
@@ -86,9 +88,14 @@ export default function About() {
               { title: 'Local Community', desc: 'We&apos;re proud to serve our community and give back through charitable initiatives.' },
             ].map((value, idx) => (
               <AnimatedSection key={idx} direction="up" delay={idx * 100}>
-                <div className="p-6 rounded-lg glow-card">
-                  <h3 className="text-xl font-bold mb-2 text-accent">{value.title}</h3>
-                  <p className="text-foreground/80 leading-relaxed">{value.desc}</p>
+                <div className="grid gap-4 py-6 sm:grid-cols-[5rem_1fr] sm:items-start">
+                  <span className="text-4xl font-bold font-mono text-accent/45">
+                    0{idx + 1}
+                  </span>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2 text-accent">{value.title}</h3>
+                    <p className="text-foreground/80 leading-relaxed">{value.desc}</p>
+                  </div>
                 </div>
               </AnimatedSection>
             ))}

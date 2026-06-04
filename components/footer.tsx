@@ -1,8 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { Clock, Mail, MapPin, Phone } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { AnimatedSection } from '@/components/animated-section'
 
 const quickLinks = [
@@ -75,84 +73,26 @@ export function Footer() {
         aria-hidden
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-10">
-        <div className="grid lg:grid-cols-[1.2fr_0.7fr_1fr] gap-10 lg:gap-14 mb-12 items-start">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="flex flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
           <AnimatedSection direction="up" delay={0}>
-            <div className="max-w-md">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent mb-4">
-                Local roofing specialists
-              </p>
-              <h3 className="font-bold text-4xl sm:text-5xl mb-5 tracking-tight text-balance">
-                <span className="text-accent drop-shadow-[0_0_18px_rgba(255,140,66,0.45)]">Apex</span>{' '}
-                Roofing
-              </h3>
-              <p className="text-foreground/70 leading-relaxed">
-                Premium roof inspections, repairs, and replacements with clear estimates, dependable crews, and workmanship built to handle every season.
-              </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                {['Licensed & insured', 'Warranty-backed', 'Free estimates'].map((badge) => (
-                  <span
-                    key={badge}
-                    className="rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-accent shadow-[0_0_18px_rgba(255,140,66,0.12)]"
-                  >
-                    {badge}
-                  </span>
-                ))}
-              </div>
-            </div>
+            <Link href="/" className="font-bold text-xl text-foreground hover-scale">
+              <span className="text-accent">Apex</span> Roofing
+            </Link>
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={120}>
-            <div>
-              <h4 className="font-semibold mb-4 text-foreground/95">Quick Links</h4>
-              <ul className="space-y-3 text-sm">
+            <nav aria-label="Footer navigation">
+              <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm">
                 {quickLinks.map((link) => (
                   <li key={link.href}>
                     <FooterLink href={link.href} label={link.label} />
                   </li>
                 ))}
               </ul>
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection direction="up" delay={240}>
-            <div className="rounded-2xl border border-accent/35 bg-background/55 p-6 shadow-[0_0_36px_rgba(255,140,66,0.16)] backdrop-blur-sm">
-              <h4 className="font-semibold text-foreground/95 mb-2">Ready to talk roofing?</h4>
-              <p className="text-sm text-foreground/60 mb-6">
-                Reach out for a clear inspection, repair, or replacement estimate.
-              </p>
-              <ul className="space-y-4 text-sm text-foreground/75 mb-6">
-                <li className="flex items-start gap-3 transition-colors hover:text-accent">
-                  <Phone size={16} className="mt-0.5 text-accent/90 shrink-0" />
-                  <a href="tel:+15551234567">(555) 123-4567</a>
-                </li>
-                <li className="flex items-start gap-3 transition-colors hover:text-accent">
-                  <Mail size={16} className="mt-0.5 text-accent/90 shrink-0" />
-                  <a href="mailto:info@apexroofing.com">info@apexroofing.com</a>
-                </li>
-                <li className="flex items-start gap-3">
-                  <MapPin size={16} className="mt-0.5 text-accent/90 shrink-0" />
-                  <span>Serving homeowners within a 30-mile local radius</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Clock size={16} className="mt-0.5 text-accent/90 shrink-0" />
-                  <span>Mon-Sat, 8:00 AM - 6:00 PM</span>
-                </li>
-              </ul>
-              <Button asChild className="btn-glow-accent w-full font-semibold">
-                <Link href="/contact">Get Free Quote</Link>
-              </Button>
-            </div>
+            </nav>
           </AnimatedSection>
         </div>
-
-        <AnimatedSection direction="fade" delay={360} duration={500}>
-          <div className="border-t border-border/70 pt-8">
-            <p className="text-foreground/50 text-sm">
-              © 2025 Apex Roofing. All rights reserved.
-            </p>
-          </div>
-        </AnimatedSection>
       </div>
     </footer>
   )

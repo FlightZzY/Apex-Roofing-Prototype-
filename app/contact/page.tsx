@@ -49,23 +49,39 @@ export default function Contact() {
       {/* Contact Section */}
       <section className="w-full py-16 sm:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="grid md:grid-cols-3 border-y border-border divide-y md:divide-y-0 md:divide-x divide-border mb-16">
             {[
               { icon: Phone, label: 'Phone', value: '(555) 123-4567', href: 'tel:+15551234567' },
               { icon: Mail, label: 'Email', value: 'info@apexroofing.com', href: 'mailto:info@apexroofing.com' },
-              { icon: MapPin, label: 'Service Area', value: '30-Mile Radius', href: '#' },
-            ].map((contact, idx) => (
-              <AnimatedSection key={idx} direction="up" delay={idx * 150}>
-                <a
-                  href={contact.href}
-                  className="p-8 rounded-lg text-center hover:text-accent block glow-card h-full"
-                >
-                  <contact.icon className="w-12 h-12 mx-auto mb-4 text-accent animate-float" style={{ animationDelay: `${idx * 0.4}s`, animationDuration: '3.6s' }} />
-                  <h3 className="font-bold mb-2 text-foreground group-hover:text-accent transition-colors">{contact.label}</h3>
-                  <p className="text-foreground/70">{contact.value}</p>
-                </a>
-              </AnimatedSection>
-            ))}
+              { icon: MapPin, label: 'Service Area', value: '30-Mile Radius' },
+            ].map((contact, idx) => {
+              const content = (
+                <>
+                  <contact.icon className="w-10 h-10 text-accent animate-float flex-shrink-0" style={{ animationDelay: `${idx * 0.4}s`, animationDuration: '3.6s' }} />
+                  <div className="text-left">
+                    <h3 className="font-bold mb-1 text-foreground group-hover:text-accent transition-colors">{contact.label}</h3>
+                    <p className="text-foreground/70">{contact.value}</p>
+                  </div>
+                </>
+              )
+
+              return (
+                <AnimatedSection key={idx} direction="up" delay={idx * 150} className="h-full">
+                  {contact.href ? (
+                    <a
+                      href={contact.href}
+                      className="group flex h-full items-center gap-5 border border-transparent px-4 py-7 transition-colors hover:border-accent/30 hover:text-accent focus:outline-none focus-visible:border-accent/60 focus-visible:ring-2 focus-visible:ring-accent/25 md:px-7"
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <div className="group flex h-full items-center gap-5 border border-transparent px-4 py-7 md:px-7">
+                      {content}
+                    </div>
+                  )}
+                </AnimatedSection>
+              )
+            })}
           </div>
 
           {/* Contact Form */}
